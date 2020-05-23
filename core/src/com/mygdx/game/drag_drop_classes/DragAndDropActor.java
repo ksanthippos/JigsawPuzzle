@@ -69,7 +69,6 @@ public class DragAndDropActor extends BaseActor {
                self.addAction(Actions.scaleTo(1.0f, 1.0f, 0.25f));  // scales item back to normal when touch released
                self.onDrop();
            }
-
         });
     }
 
