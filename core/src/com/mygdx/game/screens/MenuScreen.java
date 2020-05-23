@@ -57,6 +57,6 @@ public class MenuScreen extends BaseScreen {
         if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
             JigsawPuzzleGame.setActiveScreen(new GameScreen());
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            Gdx.app.exit();
+            System.exit(0);
     }
 }
