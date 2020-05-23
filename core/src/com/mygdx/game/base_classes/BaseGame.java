@@ -4,9 +4,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 
 public abstract class BaseGame extends Game {
@@ -29,7 +34,7 @@ public abstract class BaseGame extends Game {
         labelStyle = new Label.LabelStyle();
         labelStyle.font = new BitmapFont();
 
-/*        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans.ttf"));
+        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameters = new FreeTypeFontGenerator.FreeTypeFontParameter();
         fontParameters.size = 48;
         fontParameters.color = Color.WHITE;
@@ -48,7 +53,7 @@ public abstract class BaseGame extends Game {
         NinePatch buttonPatch = new NinePatch(buttonTex, 24, 24, 24, 24);
         textButtonStyle.up = new NinePatchDrawable(buttonPatch);
         textButtonStyle.font = customFont;
-        textButtonStyle.fontColor = Color.GRAY;*/
+        textButtonStyle.fontColor = Color.GRAY;
 
     }
 

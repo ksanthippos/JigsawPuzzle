@@ -105,7 +105,7 @@ public class DragAndDropActor extends BaseActor {
     }
     //************************
 
-    public void moveActor(BaseActor other) {
+    public void moveToActor(BaseActor other) {
 
         float x = other.getX() + (other.getWidth() - this.getWidth()) / 2;
         float y = other.getY() + (other.getHeight() - this.getHeight()) / 2;
