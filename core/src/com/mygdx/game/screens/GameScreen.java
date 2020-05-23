@@ -19,20 +19,39 @@ import com.mygdx.game.base_classes.BaseActor;
 import com.mygdx.game.base_classes.BaseGame;
 import com.mygdx.game.base_classes.BaseScreen;
 
+import java.util.*;
+
+
 public class GameScreen extends BaseScreen {
 
     private Label messageLabel;
+    private List<Texture> images;
 
     @Override
     public void initialize() {
 
+        int numberRows = MenuScreen.difficulty;
+        int numberCols = MenuScreen.difficulty;
+
         BaseActor background = new BaseActor(0, 0, mainStage);
         background.loadTexture("background.jpg");
 
-        int numberRows = 3;
-        int numberCols = 3;
+        // images
+        images = new ArrayList<>();
 
-        Texture texture = new Texture(Gdx.files.internal("sun.jpg"), true);
+        images.add(new Texture(Gdx.files.internal("images/dog.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/eye.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/forest.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/leaf.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/mario.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/space.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/sunset.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/sun.jpg"), true));
+
+        // pick a random image
+        Collections.shuffle(images);
+        Texture texture = images.get(0);
+
         int imageWidth = texture.getWidth();
         int imageHeight = texture.getHeight();
         int pieceWidth = imageWidth / numberCols;
@@ -75,18 +94,8 @@ public class GameScreen extends BaseScreen {
         messageLabel.setVisible(false);
 
         // buttons
-        TextButton restartButton = new TextButton("Clear", BaseGame.textButtonStyle);
         TextButton quitButton = new TextButton("Quit", BaseGame.textButtonStyle);
-
-        uiStage.addActor(restartButton);
         uiStage.addActor(quitButton);
-
-        restartButton.addListener((Event e) -> {
-            if (!(e instanceof InputEvent) || !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                return false;
-            JigsawPuzzleGame.setActiveScreen(new GameScreen());
-            return false;
-        });
 
         quitButton.addListener((Event e) -> {
             if (!(e instanceof InputEvent) || !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
@@ -97,7 +106,6 @@ public class GameScreen extends BaseScreen {
 
         // arrange title and buttons
         uiTable.pad(20);
-        uiTable.add(restartButton).top();
         uiTable.add(quitButton).top();
 
     }
@@ -125,4 +133,6 @@ public class GameScreen extends BaseScreen {
         }
 
     }
+
+
 }

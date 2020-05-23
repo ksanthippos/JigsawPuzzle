@@ -13,6 +13,8 @@ import com.mygdx.game.base_classes.BaseScreen;
 
 public class MenuScreen extends BaseScreen {
 
+    public static int difficulty;
+
     @Override
     public void initialize() {
 
@@ -25,14 +27,33 @@ public class MenuScreen extends BaseScreen {
         title.moveBy(0, 100);
 
         // start and quit buttons
-        TextButton startButton = new TextButton("Start", BaseGame.textButtonStyle);
+        TextButton easyButton = new TextButton("Easy", BaseGame.textButtonStyle);
+        TextButton normalButton = new TextButton("Normal", BaseGame.textButtonStyle);
+        TextButton hardButton = new TextButton("Hard", BaseGame.textButtonStyle);
         TextButton quitButton = new TextButton("Quit", BaseGame.textButtonStyle);
-        uiStage.addActor(startButton);
+        uiStage.addActor(easyButton);
         uiStage.addActor(quitButton);
 
-        startButton.addListener((Event e) -> {
+        easyButton.addListener((Event e) -> {
             if (!(e instanceof InputEvent) || !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
                 return false;
+            difficulty = 2;
+            JigsawPuzzleGame.setActiveScreen(new GameScreen());
+            return false;
+        });
+
+        normalButton.addListener((Event e) -> {
+            if (!(e instanceof InputEvent) || !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                return false;
+            difficulty = 3;
+            JigsawPuzzleGame.setActiveScreen(new GameScreen());
+            return false;
+        });
+
+        hardButton.addListener((Event e) -> {
+            if (!(e instanceof InputEvent) || !((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                return false;
+            difficulty = 4;
             JigsawPuzzleGame.setActiveScreen(new GameScreen());
             return false;
         });
@@ -47,16 +68,14 @@ public class MenuScreen extends BaseScreen {
         // arrange title and buttons
         uiTable.add(title).colspan(2);
         uiTable.row();
-        uiTable.add(startButton);
+        uiTable.add(easyButton);
+        uiTable.add(normalButton);
+        uiTable.add(hardButton);
+        uiTable.row();
         uiTable.add(quitButton);
 
     }
 
     @Override
-    public void update(float dt) {
-        if (Gdx.input.isKeyPressed(Input.Keys.ENTER))
-            JigsawPuzzleGame.setActiveScreen(new GameScreen());
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            System.exit(0);
-    }
+    public void update(float dt) { }
 }
