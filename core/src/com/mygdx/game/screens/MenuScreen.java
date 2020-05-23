@@ -66,13 +66,13 @@ public class MenuScreen extends BaseScreen {
         });
 
         // arrange title and buttons
-        uiTable.add(title).colspan(2);
+        uiTable.add(title).colspan(4);
         uiTable.row();
         uiTable.add(easyButton);
         uiTable.add(normalButton);
         uiTable.add(hardButton);
         uiTable.row();
-        uiTable.add(quitButton);
+        uiTable.add(quitButton).colspan(4);
 
     }
 

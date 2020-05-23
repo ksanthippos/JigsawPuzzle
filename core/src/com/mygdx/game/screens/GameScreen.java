@@ -35,10 +35,10 @@ public class GameScreen extends BaseScreen {
 
         BaseActor background = new BaseActor(0, 0, mainStage);
         background.loadTexture("background.jpg");
+        BaseActor.setWorldBounds(background);
 
         // images
         images = new ArrayList<>();
-
         images.add(new Texture(Gdx.files.internal("images/dog.jpg"), true));
         images.add(new Texture(Gdx.files.internal("images/eye.jpg"), true));
         images.add(new Texture(Gdx.files.internal("images/forest.jpg"), true));
@@ -47,6 +47,7 @@ public class GameScreen extends BaseScreen {
         images.add(new Texture(Gdx.files.internal("images/space.jpg"), true));
         images.add(new Texture(Gdx.files.internal("images/sunset.jpg"), true));
         images.add(new Texture(Gdx.files.internal("images/sun.jpg"), true));
+        images.add(new Texture(Gdx.files.internal("images/flowers.jpg"), true));
 
         // pick a random image
         Collections.shuffle(images);
@@ -64,7 +65,7 @@ public class GameScreen extends BaseScreen {
 
                 // create pieces and randomize order
                 int pieceX = MathUtils.random(0, 400 - pieceWidth);
-                int pieceY = MathUtils.random(0, 600 - pieceHeight);
+                int pieceY = MathUtils.random(100, 600 - pieceHeight);
                 PuzzlePiece pp = new PuzzlePiece(pieceX, pieceY, mainStage);
 
                 // dragging causes animation (piece gets zoomed in a bit)
@@ -90,11 +91,12 @@ public class GameScreen extends BaseScreen {
         // win message
         messageLabel = new Label("...", BaseGame.labelStyle);
         messageLabel.setColor(Color.CYAN);
-        uiTable.add(messageLabel).expandX().expandY().bottom().pad(50);
+        uiTable.add(messageLabel).expandX().expandY().top().pad(50);
         messageLabel.setVisible(false);
 
         // buttons
-        TextButton quitButton = new TextButton("Quit", BaseGame.textButtonStyle);
+        TextButton quitButton = new TextButton("Back", BaseGame.textButtonStyle);
+        uiTable.add(quitButton);
         uiStage.addActor(quitButton);
 
         quitButton.addListener((Event e) -> {
@@ -104,9 +106,7 @@ public class GameScreen extends BaseScreen {
             return false;
         });
 
-        // arrange title and buttons
-        uiTable.pad(20);
-        uiTable.add(quitButton).top();
+
 
     }
 
